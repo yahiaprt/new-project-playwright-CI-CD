@@ -1,6 +1,4 @@
-import {expect, test } from '@playwright/test'
-
-
+import {test, expect} from "@playwright/test";
 
 test("US-05 : Création d'un devis ", async ({page}) => {
     // Visiter la 1ère page ...
@@ -25,6 +23,29 @@ test("US-05 : Création d'un devis ", async ({page}) => {
     await page.getByRole("textbox").nth(0).fill(date_.toISOString().split("T")[0])
     await page.getByRole("textbox").nth(1).fill(date_.toISOString().split("T")[0])
     
+    //cliquer sur le bouton rajouter une ligne
+    await page.getByRole("button", {name:"Ajouter une ligne"}).click();
+    let counter = 0;
+
+    counter ++;
+
+    
+    await page.locator("table tbody tr textarea").nth(0).fill("est");
+    let random_qte1 = Math.floor(Math.random()*10)+1;
+    await page.locator("table tbody tr input[min='1']").nth(0).fill(String(random_qte1));
+    
+    await page.locator("table tbody tr td input[type='text']").nth(0).fill("p");
+
+    //prix produit 1
+    let prix_produit1 = Math.floor(Math.random()*3801)+200;
+    await page.locator("table tbody tr td input[min='0']").nth(0).fill(String(prix_produit1));
+    //tva produit 1
+    let tva_produit1 = Math.random()>0.5?"10":"20"
+    await page.locator("table tbody tr td select").nth(0).selectOption(tva_produit1);
+
+    expect((await page.locator("table tbody tr td").nth(6)
+    .innerText()).split("€")[0].trim().split(".")[0]).toEqual(String(prix_produit1*random_qte1));
+
 
     
 })
