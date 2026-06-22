@@ -42,3 +42,19 @@ await expect(page).toHaveURL(/EspaceClient/)
 
 
 } )
+
+test("US-02 : Connexion ", async ({page}) => {
+    // Visiter la 1ère page ...
+    await page.goto("https://thrundrz.fr/gestion/")
+    
+    // cliquer sur la bouton creer un compt
+    await page.getByRole("link", {name:"Se connecter"}).click()
+
+    // Email 
+    await page.locator("#email").fill("yahia2248@gmail.com")
+    await page.locator("#password").fill("]DS+C@94!yUhxjd@3")
+
+    await page.getByRole("button", {name: "Se connecter"}).click()
+    await expect(page).toHaveURL(/EspaceClient/)
+    
+})
