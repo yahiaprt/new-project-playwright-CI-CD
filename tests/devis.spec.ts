@@ -2,7 +2,7 @@ import {expect, test } from '@playwright/test'
 
 
 
-test("US-05 : Création d'un devis", {tag : ["@smoke", "@e2e"]}, async ({page}) => {
+test("US-05 : Création d'un devis", {tag : ["@e2e"]}, async ({page}) => {
     // Visiter la 1ère page ...
     await page.goto("https://thrundrz.fr/gestion/")
     
