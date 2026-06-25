@@ -1,13 +1,13 @@
 import {expect, test } from '@playwright/test'
 
 
-test("inscription valide", {tag : ["@smoke", "@e2e"]}, async function ({page}){
+test("inscription valide", {tag : ["@valide", "@e2e"]}, async function ({page}){
 // on vas vistter le site
 await page.goto("https://thrundrz.fr/gestion/")
 
 // cliquer sur la bouton creer un compt
-await page.getByRole("link", {name:"Création du compte"}).click()
-
+// await page.getByRole("link", {name:"Création du compte"}).click()
+await page.locator("a[href='/gestion/newcompte']").click();
 // verifier 
 await expect(page).toHaveURL(/newcompte/)
 
@@ -43,7 +43,7 @@ await expect(page).toHaveURL(/EspaceClient/)
 
 } )
 
-test("US-02 : Connexion", {tag : ["@smoke", "@e2e"]}, async ({page}) => {
+test("US-02 : Connexion", {tag : ["@valide", "@e2e"]}, async ({page}) => {
     // Visiter la 1ère page ...
     await page.goto("https://thrundrz.fr/gestion/")
     
