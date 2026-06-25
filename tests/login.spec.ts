@@ -1,7 +1,7 @@
 import {expect, test } from '@playwright/test'
 
 
-test("inscription valide", async function ({page}){
+test("inscription valide @valide @e2e", async function ({page}){
 // on vas vistter le site
 await page.goto("https://thrundrz.fr/gestion/")
 
@@ -15,7 +15,7 @@ await expect(page).toHaveURL(/newcompte/)
 
 
 await page.getByRole("textbox", {name:"Jean Dupont"}).fill("yahia prt")
-let randomEmail = 'yahia' + Math.floor(Math.random() * 2500) + "@gmail.com"
+let randomEmail = 'yahia' + Math.floor(Math.random() * 2500) + Date.now() + "@gmail.com"
 
 await page.getByPlaceholder("contact@societe.com").fill(randomEmail)
 // +33 123467890
@@ -43,7 +43,7 @@ await expect(page).toHaveURL(/EspaceClient/)
 
 } )
 
-test("US-02 : Connexion ", async ({page}) => {
+test("US-02 : Connexion @valide @smoke", async ({page}) => {
     // Visiter la 1ère page ...
     await page.goto("https://thrundrz.fr/gestion/")
     
